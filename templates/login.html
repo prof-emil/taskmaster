@@ -10,20 +10,69 @@
                 <img src="/static/logo.png" class="col-12">
             </div>
             <div class="row">
-            <div class="card col-12">
-                <header>
-                    <h1>Login </h1>
-                </header>
-                <form action="login" method="post">
-                    <input type="text" name="username" placeholder="username">
-                    <input type="password" name="pwd" placeholder="pwd">
-                    <footer class="is-right">
-                        <input type="submit" value="Entrar">
-                    </footer>
-                </form>
-            </div>
+                <div class="card col-12">
+                    <header>
+                        <h1>Login </h1>
+                    </header>
+                    <form action="login" method="post" id="form_login">
+                        <input type="text" name="username" placeholder="username">
+                        <input type="pwd" name="pwd" placeholder="pwd">
+                        <footer class="is-right">
+                            <input type="submit" value="Entrar">
+                        </footer>
+                    </form>
+                </div>
             </div>
         </div>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                var form = document.querySelector('#form_login');
+
+                form.addEventListener('submit', function(event) {
+                    //Evita a submissão do formulario sem a validacao 
+                    event.preventDefault(); 
+
+                    var input_usuario = form.querySelector('input[name="username"]');
+                    var input_senha = form.querySelector('input[name="pwd"]');
+
+                    var username = input_usuario.value.trim();
+                    var pwd = input_senha.value.trim();
+
+                    // Checa se o usuário não esta vazio 
+                    if (username === '') {
+                        alert('Atenção: Usuário vazio');
+                        input_usuario.focus();
+                        return;
+                    }
+
+                    // REGEX: checa se o usuário tem apenas caracteres
+                    // alfanumericos
+                    if (!/^[a-zA-Z0-9]+$/.test(username)) {
+                        alert('Atenção: o usuário não pode conter caracteres epeciais');
+                        input_usuario.focus();
+                        return;
+                    }
+
+                    // Checa se a senha não está vazia
+                    if (pwd === '') {
+                        alert('Please enter a pwd.');
+                        input_senha.focus();
+                        return;
+                    }
+
+                    //Checa se a senha tem pelo menos um caractere especial e
+                    //uma maiuscula
+                    if (!/[A-Z]/.test(pwd) || !/[!@#$%^&*]/.test(pwd)) {
+                        alert('Atenção: A senha deve conter pelo menos um caractere especial e uma letra maiuscula');
+                        input_senha.focus();
+                        return;
+                    }
+
+                    form.submit();
+                });
+            });
+
+        </script> 
     </body>
 </html>
 
