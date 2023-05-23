@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, redirect
 import re
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ def login():
         username = request.form["username"]
         password = request.form["pwd"]
         if not login_validation(username, password):
-            flash("Credênciais Invalidas")
+#            flash("Credênciais Invalidas")
             return redirect("/login") 
     return render_template("login.html")
 
@@ -23,7 +23,7 @@ def usuario():
 
 
 def login_validation(username, password):
-
+    print(f"{username}, {password}")
     valida_apenasAlphanumericos = r"^[a-zA-Z0-9]+$"
     if not re.search(valida_apenasAlphanumericos, username):
         return False
