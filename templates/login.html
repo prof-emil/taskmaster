@@ -3,23 +3,27 @@
     <head>
         <title>Página de Login</title>
         <link rel="stylesheet" href="https://unpkg.com/chota@latest">
-        <style type="text/css">
-            section{
-                display: flex;
-                margin: 0 auto;
-                width: 50%;
-                flex-direction: column;
-                text-align: center;
-        </style>
     </head>
     <body>
-        <section>
-            <form action="login" method="post">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="pwd" placeholder="pwd">
-            <input type="submit" value="Entar">
-            <form>
-        </section>
+        <div class="container">
+            <div class="row">
+                <img src="/static/logo.png" class="col-12">
+            </div>
+            <div class="row">
+            <div class="card col-12">
+                <header>
+                    <h1>Login </h1>
+                </header>
+                <form action="login" method="post">
+                    <input type="text" name="username" placeholder="username">
+                    <input type="password" name="pwd" placeholder="pwd">
+                    <footer class="is-right">
+                        <input type="submit" value="Entrar">
+                    </footer>
+                </form>
+            </div>
+            </div>
+        </div>
     </body>
 </html>
 
