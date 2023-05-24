@@ -10,16 +10,56 @@
                 width: 50%;
                 flex-direction: column;
                 text-align: center;
+            }
         </style>
     </head>
     <body>
         <section>
-            <form action="login" method="post">
+            <form action="login" method="post" id="loginForm">
             <input type="text" name="username" placeholder="username">
             <input type="password" name="pwd" placeholder="pwd">
             <input type="submit" value="Entar">
-            <form>
+            </form>
         </section>
+
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function(){
+                var form = document.querySelector("#loginForm");
+
+                form.addEventListener("submit", function(event){
+                    //Evito envio do formulario
+                    event.preventDefault();
+
+                    var input_usuario = form.querySelector('input[name="username"]');
+                    var input_pwd = form.querySelector('input[name="pwd"]');
+
+                    var usuario = input_usuario.value.trim();
+                    var pwd = input_pwd.value.trim();
+
+                    if(usuario === "" ){
+                        alert("Usuário vazio");
+                        input_usuario.focus();
+                        return;
+                    }
+
+                    if(pwd === "" ){
+                        alert("Senha vazia");
+                        input_pwd.focus();
+                        return;
+                    }
+
+                    const regAlfanum = /^[a-zA-Z0-9]+$/;
+
+                    if(! regAlfanum.test(usuario)){
+                        alert("Usuario deve ser alfanumerico apenas");
+                        input_usuario.focus()
+                        return;
+                    }
+
+
+                });
+            });
+        </script>
     </body>
 </html>
 
